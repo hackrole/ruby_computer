@@ -1,4 +1,4 @@
-class FARule < Struct.new(:state, :character, :next_state)
+class DFARule < Struct.new(:state, :character, :next_state)
 
   def applies_to?(state, character)
     self.state == state && self.character == character
@@ -9,7 +9,7 @@ class FARule < Struct.new(:state, :character, :next_state)
   end
 
   def inspect
-    "<FARule #{state.inspect}--#{character}-->#{next_state.inspect}>"
+    "<DFARule #{state.inspect}--#{character}-->#{next_state.inspect}>"
   end
 end
 
@@ -51,12 +51,12 @@ end
 
 
 rulebook = DFARulebook.new([
-  FARule.new(1, 'a', 2),
-  FARule.new(1, 'b', 1),
-  FARule.new(2, 'a', 2),
-  FARule.new(2, 'b', 3),
-  FARule.new(3, 'a', 3),
-  FARule.new(3, 'b', 3),
+  DFARule.new(1, 'a', 2),
+  DFARule.new(1, 'b', 1),
+  DFARule.new(2, 'a', 2),
+  DFARule.new(2, 'b', 3),
+  DFARule.new(3, 'a', 3),
+  DFARule.new(3, 'b', 3),
 ])
 
 puts DFA.new(1, [1, 3], rulebook).accepting?

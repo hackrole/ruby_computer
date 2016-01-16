@@ -87,7 +87,7 @@ class LessThan < Struct.new(:left, :right)
   end
 end
 
-class Variable
+class Variable < Struct.new(:name)
   def reduce(environment)
     environment[name]
   end
@@ -172,9 +172,4 @@ Machine.new(
     Assign.new(:y, Number.new(2))
   ),
   {x: Boolean.new(true)}
-).run
-
-Machine.new(
-  If.new(Variable.new(:x), Assign.new(:y, Number.new(1)), DoNothing.new),
-  {x: Boolean.new(false)}
 ).run
